@@ -1,0 +1,9 @@
+<button (click)="onSave()">Save</button>
+<input type="text" [(ngModel)]="txtInput" />
+<hr/>
+<canvas width="300" height="300" #idCanvas id="hidCanvas"></canvas>
+<div>
+    <ul>
+        <li *ngFor="let instance of listNames" {click}="onLoadDessin({{instance}})">{{instance}}</li>
+    </ul>    
+</div>
