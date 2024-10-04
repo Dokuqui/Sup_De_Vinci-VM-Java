@@ -1,0 +1,49 @@
+package com.formation.hellospring.controller;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.formation.hellospring.models.DessinModel;
+import com.formation.hellospring.services.PersistDessinService;
+
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@RestController
+@RequestMapping("/api/v1/dessins")
+public class DessinController {
+
+    @Autowired
+    PersistDessinService serviceDessin;
+
+    @GetMapping("/get-list")
+    public ResponseEntity<List<String>> getAllDessin() {
+        List<String> returnList = serviceDessin.getAllDraw();
+        return new ResponseEntity(returnList, HttpStatus.OK);
+    }
+    
+
+    @GetMapping("/get-one")
+    public ResponseEntity<DessinModel> getOneDessin(String name) {
+        DessinModel dessinByName = serviceDessin.getDrawOnebyName(name);
+        if (dessinByName != null) {
+            return new ResponseEntity(dessinByName, HttpStatus.OK);
+        } else {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity createDessin(@RequestBody DessinModel dessinFromClient) {
+        serviceDessin.createDraw(dessinFromClient);
+        return new ResponseEntity(dessinFromClient, HttpStatus.CREATED);
+    }
+
+}
