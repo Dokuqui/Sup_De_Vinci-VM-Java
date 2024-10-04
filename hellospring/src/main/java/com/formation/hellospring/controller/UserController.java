@@ -17,7 +17,7 @@ import java.util.List;
 import com.formation.hellospring.models.UserModel;
 import com.formation.hellospring.services.UserService;
 
-@CrossOrigin(origins = "https://potential-carnival-5w64949wq6ph7wg6-8080.app.github.dev", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserController {
