@@ -2,10 +2,19 @@ package com.formation.hellospring.models;
 
 import org.springframework.data.annotation.Id;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
+@Entity
+@Table(name="dessin")
 public class DessinModel {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
+
     String nom;
     String auteur;
     String content;
