@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.formation.hellospring.models.DessinModel;
+import com.formation.hellospring.services.JmsSenderService;
 import com.formation.hellospring.services.PersistDessinService;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
@@ -50,6 +51,7 @@ public class DessinController {
     public ResponseEntity createDessin(@RequestBody DessinModel dessinFromClient) {
         serviceDessin.createDraw(dessinFromClient);
         logger.info("Call to create new dessin data");
+        JmsSenderService.sendMessage(String.format("Dessin: %1$s created", dessinFromClient.getNom()));
         return new ResponseEntity(dessinFromClient, HttpStatus.CREATED);
     }
 

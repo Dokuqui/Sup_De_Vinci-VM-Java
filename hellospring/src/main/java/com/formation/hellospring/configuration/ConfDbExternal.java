@@ -11,11 +11,8 @@ import com.formation.hellospring.CustomDataSource;
 @Configuration
 public class ConfDbExternal {
 
-    @Autowired 
-    Environment env;
-
     @Autowired
-    ConfDbExternal condDeb;
+    Environment env;
 
     @Bean
     public CustomDataSource dataSourceCustom() {
